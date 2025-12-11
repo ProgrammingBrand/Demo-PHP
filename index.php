@@ -72,6 +72,26 @@
                     $todo_ok = false;
                     $mensaje_error = "❌ No se pudo conectar a la base de datos para guardar el registro.";
                 }
+
+
+                // B) ENVIAR CORREO (Solo si la inserción en BD fue exitosa o si no se intentó la BD)
+                if ($todo_ok) { 
+                    // --- CONFIGURACIÓN DE ENVÍO DE CORREO ---
+                    $destinatario = "tucorreo@ejemplo.com"; // **CAMBIA ESTO**
+                    $cabeceras = 'From: ' . $nombre . ' <' . $email . '>' . "\r\n" .
+                                 'Reply-To: ' . $email . "\r\n" .
+                                 'X-Mailer: PHP/' . phpversion();
+                    $contenido_correo = "Nombre: " . $nombre . "\n"
+                                      . "Email: " . $email . "\n"
+                                      . "Mensaje:\n" . $mensaje;
+
+                    if (mail($destinatario, $asunto, $contenido_correo, $cabeceras)) {
+                        $mensaje_exito = "✅ ¡Gracias! Tu mensaje ha sido enviado correctamente y registrado.";
+                    } else {
+                        // Si falla el mail, pero la BD fue OK, sigue siendo un éxito parcial
+                        $mensaje_exito = "⚠️ Tu mensaje ha sido registrado, pero falló el envío del correo de notificación. Revisa la base de datos.";
+                    }
+                }
             } else {
                 $mensaje_error = "❌ Por favor, completa todos los campos correctamente, especialmente el email.";
             }
