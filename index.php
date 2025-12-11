@@ -14,10 +14,10 @@
 
         <?php
         // --- 1. CONFIGURACIÓN DE LA BASE DE DATOS (POSTGRESQL) ---
-        $host = 'localhost'; // O la IP de tu servidor de BD
-        $dbname = 'nombre_de_tu_bd'; // **CAMBIA ESTO** por el nombre real de tu BD
-        $user = 'usuario_postgres'; // **CAMBIA ESTO**
-        $password = 'tu_contrasena'; // **CAMBIA ESTO**
+        $host = 'computo-nube.postgres.database.azure.com'; // O la IP de tu servidor de BD
+        $dbname = 'postgres'; // **CAMBIA ESTO** por el nombre real de tu BD
+        $user = 'azure_root'; // **CAMBIA ESTO**
+        $password = 'Az-Db#Postg47_25'; // **CAMBIA ESTO**
         $port = '5432'; // Puerto por defecto de PostgreSQL
 
         $pdo = null;
